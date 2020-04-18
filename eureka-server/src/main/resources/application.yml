@@ -1,0 +1,35 @@
+server:
+  port: 8761
+spring:
+  application:
+    name: eureka-server
+  cloud:
+    inetutils:
+      preferred-networks: 127.0.0.1
+    client:
+      ip-address: 127.0.0.1
+eureka:
+  server:
+    # 集群节点之间读取超时时间。单位：毫秒
+    peer-node-read-timeout-ms: 3000
+    #eureka.server.enable-self-preservation：是否开启自我保护，默认为 true，在开启自我保护的情况下，注册中心在丢失客户端时，
+    #会进入自动保护模式，注册中心并不会将该服务从注册中心删除掉。这里我设置为 false，即关闭自我保护。根据我的经验，如果设置为 true，
+    #在负载均衡条件下，一个服务挂掉后，注册中心并没有删掉该服务，会导致客户端请求的时候可能会请求到该服务，导致系统无法访问，
+    #因此我推荐将这个属性设置为 false
+    enable-self-preservation: false
+  instance:
+    # 超过这个时间没收到心跳就剔除这个服务，这个配置一般为服务刷新时间配置的三倍，默认90s
+    lease-expiration-duration-in-seconds: 15
+    # 服务刷新时间，默认30s
+    lease-renewal-interval-in-seconds: 5
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}:${server.port}
+  client:
+    # eureka client刷新本地缓存时间,默认30s
+    registryFetchIntervalSeconds: 5
+    registerWithEureka: false
+    fetchRegistry: false
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://${spring.cloud.client.ip-address}:${server.port}/eureka/
