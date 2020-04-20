@@ -1,0 +1,26 @@
+server:
+  port: 9100
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/MalikMC/SpringCloudDemo
+          username: machun1987@163.com
+          password: M411521c
+          default-label: master
+          #配置文件所在根目录
+          search-paths: config
+eureka:
+  client:
+    # eureka client刷新本地缓存时间,默认30s
+    registryFetchIntervalSeconds: 5
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    # 超过这个时间没收到心跳就剔除这个服务，这个配置一般为服务刷新时间配置的三倍，默认90s
+    lease-expiration-duration-in-seconds: 15
+    # 服务刷新时间，默认30s
+    lease-renewal-interval-in-seconds: 5

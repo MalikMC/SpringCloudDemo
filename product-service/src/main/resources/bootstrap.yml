@@ -1,0 +1,11 @@
+
+spring:
+  application:
+    name: product-service
+  profiles:
+    active: dev
+  cloud:
+    config:
+      discovery:
+        service-id: CONFIG-SERVER
+        enabled: true

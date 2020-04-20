@@ -41,7 +41,6 @@ public class ProductController {
     @GetMapping({"list/{id}"})
     @ResponseBody
     public Product getProductById(@PathVariable("id") Long id) throws InterruptedException {
-        TimeUnit.SECONDS.sleep(2L);
         Product product = this.productService.findByProductId(id);
         product.setProductAddress(this.port);
         return product;
