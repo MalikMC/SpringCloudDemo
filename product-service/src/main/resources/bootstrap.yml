@@ -9,3 +9,5 @@ spring:
       discovery:
         service-id: CONFIG-SERVER
         enabled: true
+
+

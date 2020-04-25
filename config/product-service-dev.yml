@@ -1,8 +1,6 @@
 server:
   port: 8901
-spring:
-  application:
-    name: product-service
+
   zipkin:
     base-url: http://182.92.243.236:9411/
   sleuth:
