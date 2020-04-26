@@ -20,6 +20,6 @@ eureka:
     lease-renewal-interval-in-seconds: 5
 
 api:
- url: "costApiURL"
+ url: "priceApiURL"
 
 
