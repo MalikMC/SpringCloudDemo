@@ -1,5 +1,5 @@
 server:
-  port: 8902
+  port: 8901
 
   zipkin:
     base-url: http://182.92.243.236:9411/
@@ -19,6 +19,7 @@ eureka:
     # 服务刷新时间，默认30s
     lease-renewal-interval-in-seconds: 5
 
-
+api:
+ url: "costApiURL"
 
 
