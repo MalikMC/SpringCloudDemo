@@ -1,5 +1,5 @@
 server:
-  port: 8901
+  port: 8902
 
   zipkin:
     base-url: http://182.92.243.236:9411/
