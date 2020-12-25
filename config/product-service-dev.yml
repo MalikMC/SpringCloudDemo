@@ -19,6 +19,9 @@ eureka:
     # 服务刷新时间，默认30s
     lease-renewal-interval-in-seconds: 5
 
+api:
+  url: "costApiURL"
+
 
 
 

@@ -4,10 +4,21 @@ spring:
     name: product-service
   profiles:
     active: dev
+  #从配置中心获取配置
   cloud:
     config:
       discovery:
         service-id: CONFIG-SERVER
         enabled: true
+  rabbitmq:
+    host: 182.92.243.236
+    port: 5672
+    username: admin
+    password: 123456
 
-
+#暴露全部的监控信息
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

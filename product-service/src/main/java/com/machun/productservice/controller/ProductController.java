@@ -4,6 +4,7 @@ import com.machun.productservice.entity.Product;
 import com.machun.productservice.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,11 +24,16 @@ import java.util.concurrent.TimeUnit;
 
 @RequestMapping({"product"})
 @Controller
+@RefreshScope
 public class ProductController {
     @Autowired
     ProductService productService;
     @Value("${server.port}")
     private String port;
+
+    @Value("${api.url}")
+    private String apiUrl;
+
 
     public ProductController() {
     }
@@ -42,7 +48,7 @@ public class ProductController {
     @ResponseBody
     public Product getProductById(@PathVariable("id") Long id) throws InterruptedException {
         Product product = this.productService.findByProductId(id);
-        product.setProductAddress(this.port);
+        product.setProductAddress(this.port+" : "+this.apiUrl);
         return product;
     }
 }
